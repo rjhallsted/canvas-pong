@@ -13,17 +13,9 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	var rightPaddle = new Paddle( cxt, 'right' );
 	rightPaddle.draw();
 
-	drawBall( cxt );
+	var pongBall = new Ball( cxt );
+	pongBall.draw();
 });
-
-function drawBall( cxt ) {
-	var size = 10;
-
-	var leftPosition = ( cxt.width / 2 ) - ( size / 2 );
-	var topPosition = ( cxt.height / 2 ) - ( size / 2 );
-
-	cxt.fillRect( leftPosition, topPosition, size, size );
-}
 
 class MovableObject {
 	constructor( cxt, width, height, left, top ) {
@@ -76,5 +68,16 @@ class Paddle extends MovableObject {
 		var halfPaddle = paddleHeight / 2;
 
 		return halfCanvas - halfPaddle;
+	}
+}
+
+class Ball extends MovableObject {
+	constructor( cxt ) {
+		var size = 10;
+		var left = ( cxt.width / 2 ) - ( size / 2 );
+		var top = ( cxt.height / 2 ) - ( size / 2 );
+
+		super( cxt, size, size, left, top );
+		this.size = size;
 	}
 }
