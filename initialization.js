@@ -9,6 +9,8 @@ document.addEventListener( 'DOMContentLoaded', function() {
 
 	drawPaddle( cxt, 'left');
 	drawPaddle( cxt, 'right');
+
+	drawBall( cxt );
 });
 
 
@@ -38,4 +40,13 @@ function getPaddleTopPosition( cxt, paddleHeight ) {
 	var halfPaddle = paddleHeight / 2;
 
 	return halfCanvas - halfPaddle;
+}
+
+function drawBall( cxt ) {
+	var size = 10;
+
+	var leftPosition = ( cxt.width / 2 ) - ( size / 2 );
+	var topPosition = ( cxt.height / 2 ) - ( size / 2 );
+
+	cxt.fillRect( leftPosition, topPosition, size, size );
 }
