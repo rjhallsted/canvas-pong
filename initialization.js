@@ -9,6 +9,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 
 	var leftPaddle = new Paddle( cxt, 'left' );
 	leftPaddle.draw();
+	leftPaddle.move( leftPaddle.top - 50 );
 
 	var rightPaddle = new Paddle( cxt, 'right' );
 	rightPaddle.draw();
@@ -36,6 +37,14 @@ class MovableObject {
 
 	draw() {
 		this.cxt.fillRect( this.left, this.top, this.width, this.height );
+	}
+
+	move( left, top ) {
+		this.cxt.clearRect( this.left, this.top, this.width, this.height );
+
+		this.left = left;
+		this.top = top;
+		this.draw();
 	}
 }
 
@@ -68,6 +77,10 @@ class Paddle extends MovableObject {
 		var halfPaddle = paddleHeight / 2;
 
 		return halfCanvas - halfPaddle;
+	}
+
+	move( top ) {
+		super.move( this.left, top );
 	}
 }
 
