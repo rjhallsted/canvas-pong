@@ -25,33 +25,56 @@ function drawBall( cxt ) {
 	cxt.fillRect( leftPosition, topPosition, size, size );
 }
 
-class Paddle {
-	constructor( cxt, side ) {
+class MovableObject {
+	constructor( cxt, width, height, left, top ) {
 		this.cxt = cxt;
-		this.width = 6;
-		this.height = 80;
-		this.side = side;
-		this.left = this.getStartingLeftPosition( this.cxt, side, this.width );
-		this.top = this.getStartingTopPosition( this.cxt, this.height );
+		this.setSize(width, height);
+		this.setPosition( left, top );
 	}
 
-	getStartingLeftPosition( cxt, side ) {
+	setSize(width, height) {
+		this.width = width;
+		this.height = height;
+	}
+
+	setPosition( left, top ) {
+		this.left = left;
+		this.top = top;
+	}
+
+	draw() {
+		this.cxt.fillRect( this.left, this.top, this.width, this.height );
+	}
+}
+
+class Paddle extends MovableObject {
+	constructor( cxt, side ) {
+
+		var width = 6;
+		var height = 80;
+
+		super( cxt, width, height, 0, 0);
+
+		this.side = side;
+		var left = this.calculateInitialLeftPosition( cxt, side, width );
+		var top = this.calculateInitialTopPosition( cxt, height );
+
+		this.setPosition( left, top );	//reset position with new calculations we can do after 'this' is initialized.
+	}
+
+	calculateInitialLeftPosition( cxt, side, paddleWidth ) {
 		var sideMargin = 30;
 
 		if( side == 'left' )
 			return sideMargin;
 		else
-			return this.cxt.width - this.width - sideMargin;
+			return cxt.width - paddleWidth - sideMargin;
 	}
 
-	getStartingTopPosition() {
-		var halfCanvas = this.cxt.height / 2;
-		var halfPaddle = this.height / 2;
+	calculateInitialTopPosition( cxt, paddleHeight ) {
+		var halfCanvas = cxt.height / 2;
+		var halfPaddle = paddleHeight / 2;
 
 		return halfCanvas - halfPaddle;
-	}
-
-	draw() {
-		this.cxt.fillRect( this.left, this.top, this.width, this.height );
 	}
 }
