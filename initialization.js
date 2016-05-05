@@ -9,13 +9,16 @@ document.addEventListener( 'DOMContentLoaded', function() {
 
 	var leftPaddle = new Paddle( cxt, 'left' );
 	leftPaddle.draw();
-	leftPaddle.move( leftPaddle.top - 50 );
 
 	var rightPaddle = new Paddle( cxt, 'right' );
 	rightPaddle.draw();
 
 	var pongBall = new Ball( cxt );
 	pongBall.draw();
+
+
+	//test code for animation
+	pongBall.animate( -1, 0, 2000 );
 });
 
 class MovableObject {
@@ -39,8 +42,9 @@ class MovableObject {
 		this.cxt.fillRect( this.left, this.top, this.width, this.height );
 	}
 
-	move( left, top ) {
-		this.cxt.clearRect( this.left, this.top, this.width, this.height );
+	move( left, top ) { 
+		//padded area is to eliminate ghost lines leftover from semi-transparent pixels.
+		this.cxt.clearRect( this.left - 0.5, this.top - 0.5, this.width + 1, this.height + 1 ); 
 
 		this.left = left;
 		this.top = top;
@@ -92,5 +96,31 @@ class Ball extends MovableObject {
 
 		super( cxt, size, size, left, top );
 		this.size = size;
+	}
+
+	animate( xSpeed, ySpeed, time ) {
+		var numberOfIntervals = time / 5;
+		var intervalCount = 0;
+
+		var object = this;
+		var executeAnimation = this.executeAnimation; //save so that it can be called inside of the interval function
+
+		var intervalManager = setInterval( function() {
+			intervalCount++;
+			if( intervalCount >= numberOfIntervals ) {
+				clearInterval(intervalManager);
+			} else {
+				executeAnimation( xSpeed, ySpeed, object );
+			}
+		}, 5);
+	}
+
+	executeAnimation( xSpeed, ySpeed, object ) {
+		//requires the object be passed to call this from inside an anonymous function
+
+		if( !object )
+			object = this;
+
+		object.move( object.left + xSpeed, object.top + ySpeed );
 	}
 }

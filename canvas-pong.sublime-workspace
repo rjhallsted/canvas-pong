@@ -4,16 +4,44 @@
 		"selected_items":
 		[
 			[
+				"left",
+				"leftPaddle"
+			],
+			[
+				"cal",
+				"calculateInitialRightPosition"
+			],
+			[
+				"get",
+				"getStartingTopPosition"
+			],
+			[
+				"right",
+				"rightPaddle"
+			],
+			[
+				"lef",
+				"leftPaddle"
+			],
+			[
+				"getPa",
+				"getPaddleTopPosition"
+			],
+			[
+				"center",
+				"centerY"
+			],
+			[
+				"draw",
+				"drawBall"
+			],
+			[
 				"hal",
 				"halfPaddle"
 			],
 			[
 				"half",
 				"halfCanvas"
-			],
-			[
-				"get",
-				"getPaddleLeftPosition"
 			],
 			[
 				"side",
@@ -486,34 +514,6 @@
 			[
 				"nth",
 				"nth-of-type"
-			],
-			[
-				"mw",
-				"max-width"
-			],
-			[
-				"min",
-				"min-width"
-			],
-			[
-				"can",
-				"concatenateDays"
-			],
-			[
-				"days",
-				"daysString"
-			],
-			[
-				"pfs-r",
-				"pfs-flight-results"
-			],
-			[
-				"arrival",
-				"arrival_time"
-			],
-			[
-				"Arriva",
-				"ArrivalAirport"
 			]
 		]
 	},
@@ -531,7 +531,7 @@
 			"file": "initialization.js",
 			"settings":
 			{
-				"buffer_size": 921,
+				"buffer_size": 2070,
 				"line_ending": "Unix"
 			}
 		}
@@ -949,7 +949,8 @@
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -964,22 +965,25 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 921,
+						"buffer_size": 2070,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								317,
-								317
+								908,
+								908
 							]
 						],
 						"settings":
 						{
 							"auto_name": "",
 							"incomplete_sync": null,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1058,7 +1062,7 @@
 		[
 			[
 				"",
-				"~/Documents/Projects/Webserver/dbamt-site/dbamt-site.sublime-project"
+				"~/Documents/webserver/arbor-creative/arbor-creative-theme.sublime-project"
 			]
 		],
 		"width": 380.0
