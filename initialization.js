@@ -7,40 +7,14 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	cxt.width = canvas.width;
 	cxt.height = canvas.height;
 
-	drawPaddle( cxt, 'left');
-	drawPaddle( cxt, 'right');
+	var leftPaddle = new Paddle( cxt, 'left' );
+	leftPaddle.draw();
+
+	var rightPaddle = new Paddle( cxt, 'right' );
+	rightPaddle.draw();
 
 	drawBall( cxt );
 });
-
-
-function drawPaddle( cxt, side ) {
-	var width = 6;
-	var height = 80;
-
-	var topPosition = getPaddleTopPosition( cxt, height );
-
-	var leftPosition = getPaddleLeftPosition( cxt, side, width );
-
-	cxt.fillRect( leftPosition, topPosition, width, height );
-}
-
-function getPaddleLeftPosition( cxt, side, paddleWidth ) {
-	var sideMargin = 30;
-
-	if( side == 'left' ) {
-		return sideMargin;
-	}
-	else
-		return cxt.width - paddleWidth - sideMargin;
-}
-
-function getPaddleTopPosition( cxt, paddleHeight ) {
-	var halfCanvas = cxt.height / 2;
-	var halfPaddle = paddleHeight / 2;
-
-	return halfCanvas - halfPaddle;
-}
 
 function drawBall( cxt ) {
 	var size = 10;
@@ -49,4 +23,35 @@ function drawBall( cxt ) {
 	var topPosition = ( cxt.height / 2 ) - ( size / 2 );
 
 	cxt.fillRect( leftPosition, topPosition, size, size );
+}
+
+class Paddle {
+	constructor( cxt, side ) {
+		this.cxt = cxt;
+		this.width = 6;
+		this.height = 80;
+		this.side = side;
+		this.left = this.getStartingLeftPosition( this.cxt, side, this.width );
+		this.top = this.getStartingTopPosition( this.cxt, this.height );
+	}
+
+	getStartingLeftPosition( cxt, side ) {
+		var sideMargin = 30;
+
+		if( side == 'left' )
+			return sideMargin;
+		else
+			return this.cxt.width - this.width - sideMargin;
+	}
+
+	getStartingTopPosition() {
+		var halfCanvas = this.cxt.height / 2;
+		var halfPaddle = this.height / 2;
+
+		return halfCanvas - halfPaddle;
+	}
+
+	draw() {
+		this.cxt.fillRect( this.left, this.top, this.width, this.height );
+	}
 }
