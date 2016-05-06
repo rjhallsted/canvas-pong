@@ -18,6 +18,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 
 
 	//test code for animation
+	leftPaddle.animate(0, -1, 1000 );
 	pongBall.animate( -1, 0, 2000 );
 });
 
@@ -49,6 +50,32 @@ class MovableObject {
 		this.left = left;
 		this.top = top;
 		this.draw();
+	}
+
+	animate( xSpeed, ySpeed, time ) {
+		var numberOfIntervals = time / 5;
+		var intervalCount = 0;
+
+		var object = this;
+		var executeAnimation = this.executeAnimation; //save so that it can be called inside of the interval function
+
+		var intervalManager = setInterval( function() {
+			intervalCount++;
+			if( intervalCount >= numberOfIntervals ) {
+				clearInterval(intervalManager);
+			} else {
+				executeAnimation( xSpeed, ySpeed, object );
+			}
+		}, 5);
+	}
+
+	executeAnimation( xSpeed, ySpeed, object ) {
+		//requires the object be passed to call this from inside an anonymous function
+
+		if( !object )
+			object = this;
+
+		object.move( object.left + xSpeed, object.top + ySpeed );
 	}
 }
 
@@ -96,31 +123,5 @@ class Ball extends MovableObject {
 
 		super( cxt, size, size, left, top );
 		this.size = size;
-	}
-
-	animate( xSpeed, ySpeed, time ) {
-		var numberOfIntervals = time / 5;
-		var intervalCount = 0;
-
-		var object = this;
-		var executeAnimation = this.executeAnimation; //save so that it can be called inside of the interval function
-
-		var intervalManager = setInterval( function() {
-			intervalCount++;
-			if( intervalCount >= numberOfIntervals ) {
-				clearInterval(intervalManager);
-			} else {
-				executeAnimation( xSpeed, ySpeed, object );
-			}
-		}, 5);
-	}
-
-	executeAnimation( xSpeed, ySpeed, object ) {
-		//requires the object be passed to call this from inside an anonymous function
-
-		if( !object )
-			object = this;
-
-		object.move( object.left + xSpeed, object.top + ySpeed );
 	}
 }
