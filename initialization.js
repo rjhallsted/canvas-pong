@@ -75,6 +75,7 @@ class MovableObject {
 		if( !object )
 			object = this;
 
+		console.log( object.left + ' ' + object.top );
 		object.move( object.left + xSpeed, object.top + ySpeed );
 	}
 }
@@ -108,10 +109,6 @@ class Paddle extends MovableObject {
 		var halfPaddle = paddleHeight / 2;
 
 		return halfCanvas - halfPaddle;
-	}
-
-	move( top ) {
-		super.move( this.left, top );
 	}
 }
 
