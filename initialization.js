@@ -18,11 +18,36 @@ document.addEventListener( 'DOMContentLoaded', function() {
 
 
 	var daRules = new Physics();
-	daRules.animate( pongBall, -1, 0, 2000 );
-	daRules.animate( leftPaddle, 0, -1, 1000 );
+	// daRules.animate( pongBall, -1, 0, 2000 );
+	// daRules.animate( leftPaddle, 0, -1, 1000 );
+
+	var startButton = document.querySelector('#start');
+	startButton.addEventListener('click', function() {
+		// daRules.start( pongBall, leftPaddle, rightPaddle );
+		// this.disabled = true;
+	});
 });
 
+class GameController {
+
+	constructor( cxt ) {
+		this.ball = new Ball( cxt );
+		this.leftPaddle = new Paddle( cxt, 'left' );
+		this.rightPaddle = new Paddle( cxt, 'right' );
+		this.physics = new Physics();
+	}
+
+	advanceFrame() {
+
+	}
+
+}
+
 class Physics {
+
+	start( ball, leftPaddle, rightPaddle ) {
+		this.animate( ball, -1, 0, 3000 );
+	}
 
 	animate( object, xSpeed, ySpeed, time ) {
 		var numberOfIntervals = time / 5;
