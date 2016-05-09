@@ -35,26 +35,33 @@ class GameController {
 	}
 
 	initializeControls() {
+		this.speedReference = {
+			'38' : -1,
+			'40' : 1,
+			'65' : -1,
+			'90' : 1
+		};
+
 		var object = this;
 		document.onkeydown = function(e) {
 			//right paddle
 			if( e.keyCode == '38' ) {
 				//up arrow
-				object.paddleControlKeyPress('right', -1, e.keyCode);
+				object.paddleControlKeyPress('right', e.keyCode);
 			}
 			if( e.keyCode == '40' ) {
 				//down arrow
-				object.paddleControlKeyPress('right', 1, e.keyCode);
+				object.paddleControlKeyPress('right', e.keyCode);
 			}
 
 			//left paddle
 			if( e.keyCode == '65' ) {
 				//'a' key
-				object.paddleControlKeyPress('left', -1, e.keyCode);
+				object.paddleControlKeyPress('left', e.keyCode);
 			}
 			if( e.keyCode == '90' ) {
 				//'z' key
-				object.paddleControlKeyPress('left', 1, e.keyCode);
+				object.paddleControlKeyPress('left', e.keyCode);
 			}
 		};
 		document.onkeyup = function(e) {
@@ -99,29 +106,64 @@ class GameController {
 		clearInterval(this.intervalController);
 	}
 
-	paddleControlKeyPress(paddle, speed, passedControl) {
+	paddleControlKeyPress(paddle, passedControl) {
 		if( paddle == 'left' ) {
-			this.leftPaddle.currentControl = passedControl;
-			this.leftPaddle.ySpeed = speed;
+			if( this.leftPaddle.controlStack.indexOf( passedControl ) == -1 ) {
+				this.leftPaddle.controlStack.push(passedControl);
+			} else {
+				this.leftPaddle.controlStack.splice( this.leftPaddle.controlStack.indexOf( passedControl ), 1);
+				this.leftPaddle.controlStack.push(passedControl);
+			}
+			console.log(this.leftPaddle.controlStack);
+			this.setPaddleSpeed('left');
 		}
 		if( paddle == 'right' ) {
-			this.rightPaddle.currentControl = passedControl;
-			this.rightPaddle.ySpeed = speed;
+			if( this.rightPaddle.controlStack.indexOf( passedControl ) == -1 ) {
+				this.rightPaddle.controlStack.push(passedControl);
+			} else {
+				this.rightPaddle.controlStack.splice( this.rightPaddle.controlStack.indexOf( passedControl ), 1);
+				this.rightPaddle.controlStack.push(passedControl);
+			}
+			console.log(this.rightPaddle.controlStack);
+			this.setPaddleSpeed('right');
 		}
 	}
 
 	paddleControlKeyRelease(paddle, passedControl) {
 		if( paddle == 'left' ) {
-			if( this.leftPaddle.currentControl == passedControl ) {
+			this.leftPaddle.controlStack.reverse();
+			this.leftPaddle.controlStack.splice( this.leftPaddle.controlStack.indexOf( passedControl ), 1);
+			this.leftPaddle.controlStack.reverse();
+			console.log(this.leftPaddle.controlStack);
+
+			if( this.leftPaddle.controlStack.length == 0 )
 				this.leftPaddle.ySpeed = 0;
-				this.leftPaddle.currentControl = null;
-			}
+			else
+				this.setPaddleSpeed('left');
 		}
 		if( paddle == 'right' ) {
-			if( this.rightPaddle.currentControl == passedControl ) {
+			this.rightPaddle.controlStack.reverse();
+			this.rightPaddle.controlStack.splice( this.rightPaddle.controlStack.indexOf( passedControl ), 1);
+			this.rightPaddle.controlStack.reverse();
+			console.log(this.rightPaddle.controlStack);
+
+			if( this.rightPaddle.controlStack.length == 0 )
 				this.rightPaddle.ySpeed = 0;
-				this.rightPaddle.currentControl = null;
-			}
+			else
+				this.setPaddleSpeed('right');
+		}
+	}
+
+	setPaddleSpeed(paddle) {
+		if( paddle == 'left' ) {
+			var speed = this.speedReference[ this.leftPaddle.controlStack[ this.leftPaddle.controlStack.length - 1 ] ];
+			console.log(speed);
+			this.leftPaddle.ySpeed = speed;
+		}
+		if( paddle == 'right' ) {
+			var speed = this.speedReference[ this.rightPaddle.controlStack[ this.rightPaddle.controlStack.length - 1 ] ];
+			console.log(speed);
+			this.rightPaddle.ySpeed = speed;
 		}
 	}
 }
@@ -180,7 +222,7 @@ class Paddle extends MovableObject {
 		var top = this.calculateInitialTopPosition( cxt, height );
 
 		this.setPosition( left, top );	//reset position with new calculations we can do after 'this' is initialized.
-		this.currentControl = null;
+		this.controlStack = [];
 	}
 
 	calculateInitialLeftPosition( cxt, side, paddleWidth ) {
