@@ -7,80 +7,41 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	cxt.width = canvas.width;
 	cxt.height = canvas.height;
 
-	var leftPaddle = new Paddle( cxt, 'left' );
-	leftPaddle.draw();
-
-	var rightPaddle = new Paddle( cxt, 'right' );
-	rightPaddle.draw();
-
-	var pongBall = new Ball( cxt );
-	pongBall.draw();
-
-
-	var daRules = new Physics();
-	// daRules.animate( pongBall, -1, 0, 2000 );
-	// daRules.animate( leftPaddle, 0, -1, 1000 );
+	var controller = new GameController( cxt );
 
 	var startButton = document.querySelector('#start');
 	startButton.addEventListener('click', function() {
-		// daRules.start( pongBall, leftPaddle, rightPaddle );
-		// this.disabled = true;
+		controller.advanceFrame();
 	});
 });
 
 class GameController {
 
 	constructor( cxt ) {
-		this.ball = new Ball( cxt );
+		this.ball = new Ball( cxt, -1, -.5 );
 		this.leftPaddle = new Paddle( cxt, 'left' );
 		this.rightPaddle = new Paddle( cxt, 'right' );
-		this.physics = new Physics();
+
+		this.ball.draw();
+		this.leftPaddle.draw();
+		this.rightPaddle.draw();
 	}
 
 	advanceFrame() {
-
+		this.ball.moveAtSpeed();
+		this.leftPaddle.moveAtSpeed();
+		this.rightPaddle.moveAtSpeed();
 	}
 
-}
-
-class Physics {
-
-	start( ball, leftPaddle, rightPaddle ) {
-		this.animate( ball, -1, 0, 3000 );
-	}
-
-	animate( object, xSpeed, ySpeed, time ) {
-		var numberOfIntervals = time / 5;
-		var intervalCount = 0;
-
-		var executeAnimation = this.executeAnimation; //save so that it can be called inside of the interval function
-
-		var intervalManager = setInterval( function() {
-			intervalCount++;
-			if( intervalCount >= numberOfIntervals ) {
-				clearInterval(intervalManager);
-			} else {
-				executeAnimation( xSpeed, ySpeed, object );
-			}
-		}, 5);
-	}
-
-	executeAnimation( xSpeed, ySpeed, object ) {
-		//requires the object be passed to call this from inside an anonymous function
-
-		if( !object )
-			object = this;
-
-		console.log( object.left + ' ' + object.top );
-		object.move( object.left + xSpeed, object.top + ySpeed );
-	}
 }
 
 class MovableObject {
-	constructor( cxt, width, height, left, top ) {
+	constructor( cxt, width, height, left, top, initialXSpeed, initialYSpeed ) {
 		this.cxt = cxt;
 		this.setSize(width, height);
 		this.setPosition( left, top );
+		this.xSpeed = initialXSpeed;
+		this.ySpeed = initialYSpeed;
 	}
 
 	setSize(width, height) {
@@ -105,6 +66,10 @@ class MovableObject {
 		this.top = top;
 		this.draw();
 	}
+
+	moveAtSpeed() {
+		this.move(this.left + this.xSpeed, this.top + this.ySpeed);
+	}
 }
 
 class Paddle extends MovableObject {
@@ -113,7 +78,7 @@ class Paddle extends MovableObject {
 		var width = 6;
 		var height = 80;
 
-		super( cxt, width, height, 0, 0);
+		super( cxt, width, height, 0, 0, 0, 0);
 
 		this.side = side;
 		var left = this.calculateInitialLeftPosition( cxt, side, width );
@@ -140,12 +105,12 @@ class Paddle extends MovableObject {
 }
 
 class Ball extends MovableObject {
-	constructor( cxt ) {
+	constructor( cxt, initialXSpeed, initialYSpeed ) {
 		var size = 10;
 		var left = ( cxt.width / 2 ) - ( size / 2 );
 		var top = ( cxt.height / 2 ) - ( size / 2 );
 
-		super( cxt, size, size, left, top );
+		super( cxt, size, size, left, top, initialXSpeed, initialYSpeed);
 		this.size = size;
 	}
 }
