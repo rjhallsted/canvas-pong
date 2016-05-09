@@ -88,6 +88,10 @@ class MovableObject {
 	moveAtSpeed() {
 		this.move(this.left + this.xSpeed, this.top + this.ySpeed);
 	}
+
+	reverseYSpeed() {
+		this.ySpeed = -this.ySpeed;
+	}
 }
 
 class Paddle extends MovableObject {
@@ -134,7 +138,10 @@ class Ball extends MovableObject {
 
 	handleCollsionDetection() {
 		if( this.top <= 0 ) {
-			this.ySpeed = -this.ySpeed;
+			this.reverseYSpeed();
+		}
+		if( this.top >= this.cxt.height ) {
+			this.reverseYSpeed();
 		}
 	}
 }
