@@ -31,26 +31,51 @@ class GameController {
 		this.leftPaddle.draw();
 		this.rightPaddle.draw();
 
-		var object = this;
+		this.initializeControls();
+	}
 
+	initializeControls() {
+		var object = this;
 		document.onkeydown = function(e) {
+			//right paddle
 			if( e.keyCode == '38' ) {
 				//up arrow
-				object.upArrowPress();
+				object.setPaddleSpeed('right', -1);
 			}
 			if( e.keyCode == '40' ) {
 				//down arrow
-				object.downArrowPress();
+				object.setPaddleSpeed('right', 1);
+			}
+
+			//left paddle
+			if( e.keyCode == '65' ) {
+				//'a' key
+				object.setPaddleSpeed('left', -1);
+			}
+			if( e.keyCode == '90' ) {
+				//'z' key
+				object.setPaddleSpeed('left', 1);
 			}
 		};
 		document.onkeyup = function(e) {
+			//right paddle
 			if( e.keyCode == '38' ) {
 				//up arrow
-				object.upArrowRelease();
+				object.setPaddleSpeed('right', 0);
 			}
 			if( e.keyCode == '40' ) {
 				//down arrow
-				object.downArrowRelease();
+				object.setPaddleSpeed('right', 0);
+			}
+
+			//left paddle
+			if( e.keyCode == '65' ) {
+				//'a' key
+				object.setPaddleSpeed('left', 0);
+			}
+			if( e.keyCode == '90' ) {
+				//'z' key
+				object.setPaddleSpeed('left', 0);
 			}
 		}
 	}
@@ -74,22 +99,13 @@ class GameController {
 		clearInterval(this.intervalController);
 	}
 
-	//rightPaddle controls
-
-	downArrowPress() {
-		this.rightPaddle.ySpeed = 1;
-	}
-
-	downArrowRelease() {
-		this.rightPaddle.ySpeed = 0;
-	}
-
-	upArrowPress() {
-		this.rightPaddle.ySpeed = -1;
-	}
-
-	upArrowRelease() {
-		this.rightPaddle.ySpeed = 0;
+	setPaddleSpeed(paddle, speed) {
+		if( paddle == 'left' ) {
+			this.leftPaddle.ySpeed = speed;
+		}
+		if( paddle == 'right' ) {
+			this.rightPaddle.ySpeed = speed;
+		}
 	}
 }
 
