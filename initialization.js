@@ -23,7 +23,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 class GameController {
 
 	constructor( cxt ) {
-		this.ball = new Ball( cxt, -1, -.5 );
+		this.ball = new Ball( cxt, -1, -1 );
 		this.leftPaddle = new Paddle( cxt, 'left' );
 		this.rightPaddle = new Paddle( cxt, 'right' );
 
@@ -36,6 +36,8 @@ class GameController {
 		this.ball.moveAtSpeed();
 		this.leftPaddle.moveAtSpeed();
 		this.rightPaddle.moveAtSpeed();
+
+		this.ball.handleCollsionDetection();
 	}
 
 	start() {
@@ -128,5 +130,11 @@ class Ball extends MovableObject {
 
 		super( cxt, size, size, left, top, initialXSpeed, initialYSpeed);
 		this.size = size;
+	}
+
+	handleCollsionDetection() {
+		if( this.top <= 0 ) {
+			this.ySpeed = -this.ySpeed;
+		}
 	}
 }
