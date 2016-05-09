@@ -35,17 +35,21 @@ class GameController {
 
 		document.onkeydown = function(e) {
 			if( e.keyCode == '38' ) {
+				//up arrow
 				object.upArrowPress();
 			}
 			if( e.keyCode == '40' ) {
+				//down arrow
 				object.downArrowPress();
 			}
 		};
 		document.onkeyup = function(e) {
 			if( e.keyCode == '38' ) {
+				//up arrow
 				object.upArrowRelease();
 			}
 			if( e.keyCode == '40' ) {
+				//down arrow
 				object.downArrowRelease();
 			}
 		}
@@ -70,20 +74,22 @@ class GameController {
 		clearInterval(this.intervalController);
 	}
 
+	//rightPaddle controls
+
 	downArrowPress() {
-		this.leftPaddle.ySpeed = 1;
+		this.rightPaddle.ySpeed = 1;
 	}
 
 	downArrowRelease() {
-		this.leftPaddle.ySpeed = 0;
+		this.rightPaddle.ySpeed = 0;
 	}
 
 	upArrowPress() {
-		this.leftPaddle.ySpeed = -1;
+		this.rightPaddle.ySpeed = -1;
 	}
 
 	upArrowRelease() {
-		this.leftPaddle.ySpeed = 0;
+		this.rightPaddle.ySpeed = 0;
 	}
 }
 
