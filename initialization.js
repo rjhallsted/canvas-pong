@@ -11,7 +11,12 @@ document.addEventListener( 'DOMContentLoaded', function() {
 
 	var startButton = document.querySelector('#start');
 	startButton.addEventListener('click', function() {
-		controller.advanceFrame();
+		controller.start();
+	});
+
+	var endButton = document.querySelector('#end');
+	endButton.addEventListener('click', function() {
+		controller.end();
 	});
 });
 
@@ -31,6 +36,17 @@ class GameController {
 		this.ball.moveAtSpeed();
 		this.leftPaddle.moveAtSpeed();
 		this.rightPaddle.moveAtSpeed();
+	}
+
+	start() {
+		var object = this;
+		this.intervalController = setInterval(function() {
+			object.advanceFrame();
+		}, 5);
+	}
+
+	end() {
+		clearInterval(this.intervalController);
 	}
 
 }
