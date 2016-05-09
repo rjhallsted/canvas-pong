@@ -30,6 +30,25 @@ class GameController {
 		this.ball.draw();
 		this.leftPaddle.draw();
 		this.rightPaddle.draw();
+
+		var object = this;
+
+		document.onkeydown = function(e) {
+			if( e.keyCode == '38' ) {
+				object.upArrowPress();
+			}
+			if( e.keyCode == '40' ) {
+				object.downArrowPress();
+			}
+		};
+		document.onkeyup = function(e) {
+			if( e.keyCode == '38' ) {
+				object.upArrowRelease();
+			}
+			if( e.keyCode == '40' ) {
+				object.downArrowRelease();
+			}
+		}
 	}
 
 	advanceFrame() {
@@ -51,6 +70,21 @@ class GameController {
 		clearInterval(this.intervalController);
 	}
 
+	downArrowPress() {
+		this.leftPaddle.ySpeed = 1;
+	}
+
+	downArrowRelease() {
+		this.leftPaddle.ySpeed = 0;
+	}
+
+	upArrowPress() {
+		this.leftPaddle.ySpeed = -1;
+	}
+
+	upArrowRelease() {
+		this.leftPaddle.ySpeed = 0;
+	}
 }
 
 class MovableObject {
