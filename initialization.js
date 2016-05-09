@@ -40,42 +40,42 @@ class GameController {
 			//right paddle
 			if( e.keyCode == '38' ) {
 				//up arrow
-				object.setPaddleSpeed('right', -1);
+				object.paddleControlKeyPress('right', -1, e.keyCode);
 			}
 			if( e.keyCode == '40' ) {
 				//down arrow
-				object.setPaddleSpeed('right', 1);
+				object.paddleControlKeyPress('right', 1, e.keyCode);
 			}
 
 			//left paddle
 			if( e.keyCode == '65' ) {
 				//'a' key
-				object.setPaddleSpeed('left', -1);
+				object.paddleControlKeyPress('left', -1, e.keyCode);
 			}
 			if( e.keyCode == '90' ) {
 				//'z' key
-				object.setPaddleSpeed('left', 1);
+				object.paddleControlKeyPress('left', 1, e.keyCode);
 			}
 		};
 		document.onkeyup = function(e) {
 			//right paddle
 			if( e.keyCode == '38' ) {
 				//up arrow
-				object.setPaddleSpeed('right', 0);
+				object.paddleControlKeyRelease('right', e.keyCode);
 			}
 			if( e.keyCode == '40' ) {
 				//down arrow
-				object.setPaddleSpeed('right', 0);
+				object.paddleControlKeyRelease('right', e.keyCode);
 			}
 
 			//left paddle
 			if( e.keyCode == '65' ) {
 				//'a' key
-				object.setPaddleSpeed('left', 0);
+				object.paddleControlKeyRelease('left', e.keyCode);
 			}
 			if( e.keyCode == '90' ) {
 				//'z' key
-				object.setPaddleSpeed('left', 0);
+				object.paddleControlKeyRelease('left', e.keyCode);
 			}
 		}
 	}
@@ -99,12 +99,29 @@ class GameController {
 		clearInterval(this.intervalController);
 	}
 
-	setPaddleSpeed(paddle, speed) {
+	paddleControlKeyPress(paddle, speed, passedControl) {
 		if( paddle == 'left' ) {
+			this.leftPaddle.currentControl = passedControl;
 			this.leftPaddle.ySpeed = speed;
 		}
 		if( paddle == 'right' ) {
+			this.rightPaddle.currentControl = passedControl;
 			this.rightPaddle.ySpeed = speed;
+		}
+	}
+
+	paddleControlKeyRelease(paddle, passedControl) {
+		if( paddle == 'left' ) {
+			if( this.leftPaddle.currentControl == passedControl ) {
+				this.leftPaddle.ySpeed = 0;
+				this.leftPaddle.currentControl = null;
+			}
+		}
+		if( paddle == 'right' ) {
+			if( this.rightPaddle.currentControl == passedControl ) {
+				this.rightPaddle.ySpeed = 0;
+				this.rightPaddle.currentControl = null;
+			}
 		}
 	}
 }
@@ -163,6 +180,7 @@ class Paddle extends MovableObject {
 		var top = this.calculateInitialTopPosition( cxt, height );
 
 		this.setPosition( left, top );	//reset position with new calculations we can do after 'this' is initialized.
+		this.currentControl = null;
 	}
 
 	calculateInitialLeftPosition( cxt, side, paddleWidth ) {
