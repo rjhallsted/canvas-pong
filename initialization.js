@@ -36,10 +36,10 @@ class GameController {
 
 	initializeControls() {
 		this.speedReference = {
-			'38' : -1,
-			'40' : 1,
-			'65' : -1,
-			'90' : 1
+			'38' : -1.5,
+			'40' : 1.5,
+			'65' : -1.5,
+			'90' : 1.5
 		};
 
 		var object = this;
@@ -93,6 +93,7 @@ class GameController {
 		this.rightPaddle.moveAtSpeed();
 
 		this.ball.handleCollsionDetection();
+
 	}
 
 	start() {
@@ -239,6 +240,15 @@ class Paddle extends MovableObject {
 		var halfPaddle = paddleHeight / 2;
 
 		return halfCanvas - halfPaddle;
+	}
+
+	moveAtSpeed() {
+		var newTop = this.top + this.ySpeed;
+
+		if( newTop <= 0 || newTop + this.height >= this.cxt.height )
+			return;
+		else
+			super.moveAtSpeed();
 	}
 }
 
