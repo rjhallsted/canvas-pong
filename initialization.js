@@ -32,6 +32,7 @@ class GameController {
 		this.rightPaddle.draw();
 
 		this.initializeControls();
+		this.frameCount = 0;
 	}
 
 	initializeControls() {
@@ -92,8 +93,8 @@ class GameController {
 		this.leftPaddle.moveAtSpeed();
 		this.rightPaddle.moveAtSpeed();
 
-		this.ball.handleCollsionDetection();
-
+		this.ball.handleWallDetection();
+		this.handlePaddleCollision();
 	}
 
 	start() {
@@ -165,6 +166,26 @@ class GameController {
 			var speed = this.speedReference[ this.rightPaddle.controlStack[ this.rightPaddle.controlStack.length - 1 ] ];
 			console.log(speed);
 			this.rightPaddle.ySpeed = speed;
+		}
+	}
+
+	handlePaddleCollision() {
+		//left paddle
+		if( this.ball.left <= this.leftPaddle.left + this.leftPaddle.width &&
+			this.ball.left > this.leftPaddle.left &&
+			this.ball.top >= this.leftPaddle.top &&
+			this.ball.top + this.ball.height <= this.leftPaddle.top + this.leftPaddle.height ) {
+			
+			this.ball.xSpeed = -this.ball.xSpeed;
+		}
+
+		//right paddle
+		if( this.ball.left + this.ball.width >= this.rightPaddle.left &&
+			this.ball.left + this.ball.width < this.rightPaddle.left + this.rightPaddle.width &&
+			this.ball.top >= this.rightPaddle.top &&
+			this.ball.top + this.ball.height <= this.rightPaddle.top + this.rightPaddle.height ) {
+			
+			this.ball.xSpeed = -this.ball.xSpeed;
 		}
 	}
 }
@@ -262,11 +283,11 @@ class Ball extends MovableObject {
 		this.size = size;
 	}
 
-	handleCollsionDetection() {
+	handleWallDetection() {
 		if( this.top <= 0 ) {
 			this.reverseYSpeed();
 		}
-		if( this.top >= this.cxt.height ) {
+		if( this.top + this.height >= this.cxt.height ) {
 			this.reverseYSpeed();
 		}
 	}
