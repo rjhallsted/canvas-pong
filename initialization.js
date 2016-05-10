@@ -37,10 +37,10 @@ class GameController {
 
 	initializeControls() {
 		this.speedReference = {
-			'38' : -1.5,
-			'40' : 1.5,
-			'65' : -1.5,
-			'90' : 1.5
+			'38' : -1.75,
+			'40' : 1.75,
+			'65' : -1.75,
+			'90' : 1.75
 		};
 
 		var object = this;
@@ -170,13 +170,16 @@ class GameController {
 	}
 
 	handlePaddleCollision() {
+		var directionMultiplier = (this.ball.xSpeed < 0) ? 1 : -1;
+
 		//left paddle
 		if( this.ball.left <= this.leftPaddle.left + this.leftPaddle.width &&
 			this.ball.left > this.leftPaddle.left &&
 			this.ball.top >= this.leftPaddle.top &&
 			this.ball.top + this.ball.height <= this.leftPaddle.top + this.leftPaddle.height ) {
-			
-			this.ball.xSpeed = -this.ball.xSpeed;
+
+			this.ball.paddleBounces++;
+			this.ball.xSpeed = -this.ball.xSpeed + (this.ball.paddleBounces / 10 * directionMultiplier);
 		}
 
 		//right paddle
@@ -185,7 +188,8 @@ class GameController {
 			this.ball.top >= this.rightPaddle.top &&
 			this.ball.top + this.ball.height <= this.rightPaddle.top + this.rightPaddle.height ) {
 			
-			this.ball.xSpeed = -this.ball.xSpeed;
+			this.ball.paddleBounces++;
+			this.ball.xSpeed = -this.ball.xSpeed + (this.ball.paddleBounces / 10 * directionMultiplier);
 		}
 	}
 }
@@ -281,6 +285,7 @@ class Ball extends MovableObject {
 
 		super( cxt, size, size, left, top, initialXSpeed, initialYSpeed);
 		this.size = size;
+		this.paddleBounces = 0;
 	}
 
 	handleWallDetection() {
