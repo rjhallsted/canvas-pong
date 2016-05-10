@@ -23,7 +23,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 class GameController {
 
 	constructor( cxt ) {
-		this.ball = new Ball( cxt, -1, -1 );
+		this.ball = new Ball( cxt, Math.random() * 2, Math.random() * 2 );
 		this.leftPaddle = new Paddle( cxt, 'left' );
 		this.rightPaddle = new Paddle( cxt, 'right' );
 
