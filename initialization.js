@@ -179,7 +179,8 @@ class GameController {
 			this.ball.top + this.ball.height <= this.leftPaddle.top + this.leftPaddle.height ) {
 
 			this.ball.paddleBounces++;
-			this.ball.xSpeed = -this.ball.xSpeed + (this.ball.paddleBounces / 10 * directionMultiplier);
+			var speedIncrease = (Math.abs(this.ball.xSpeed) >= 2) ? 0 : this.ball.paddleBounces / 10 * directionMultiplier;
+			this.ball.xSpeed = -this.ball.xSpeed + speedIncrease;
 		}
 
 		//right paddle
@@ -189,7 +190,8 @@ class GameController {
 			this.ball.top + this.ball.height <= this.rightPaddle.top + this.rightPaddle.height ) {
 			
 			this.ball.paddleBounces++;
-			this.ball.xSpeed = -this.ball.xSpeed + (this.ball.paddleBounces / 10 * directionMultiplier);
+			var speedIncrease = (Math.abs(this.ball.xSpeed) >= 2.5) ? 0 : this.ball.paddleBounces / 10 * directionMultiplier;
+			this.ball.xSpeed = -this.ball.xSpeed + speedIncrease;
 		}
 	}
 }
