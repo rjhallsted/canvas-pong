@@ -14,9 +14,9 @@ document.addEventListener( 'DOMContentLoaded', function() {
 		controller.start();
 	});
 
-	var endButton = document.querySelector('#end');
-	endButton.addEventListener('click', function() {
-		controller.end();
+	var stopButton = document.querySelector('#stop');
+	stopButton.addEventListener('click', function() {
+		controller.stop();
 	});
 });
 
@@ -104,7 +104,7 @@ class GameController {
 		}, 5);
 	}
 
-	end() {
+	stop() {
 		clearInterval(this.intervalController);
 	}
 
