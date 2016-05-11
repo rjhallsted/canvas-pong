@@ -7,7 +7,9 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	cxt.width = canvas.width;
 	cxt.height = canvas.height;
 
-	var controller = new GameController( cxt );
+	var modal = document.querySelector('#modal');
+
+	var controller = new GameController( cxt, modal );
 
 	var startButton = document.querySelector('#start');
 	startButton.addEventListener('click', function() {
@@ -22,7 +24,9 @@ document.addEventListener( 'DOMContentLoaded', function() {
 
 class GameController {
 
-	constructor( cxt ) {
+	constructor( cxt, modal ) {
+		this.modal = modal;
+
 		this.ball = new Ball( cxt, Math.random() * 1.5, Math.random() * 1 );
 		this.leftPaddle = new Paddle( cxt, 'left' );
 		this.rightPaddle = new Paddle( cxt, 'right' );
@@ -107,6 +111,8 @@ class GameController {
 	}
 
 	start() {
+		this.modal.style.display = "none";
+
 		var object = this;
 		this.intervalController = setInterval(function() {
 			object.advanceFrame();
@@ -116,6 +122,8 @@ class GameController {
 	stop() {
 		clearInterval(this.intervalController);
 		this.intervalController = false;
+
+		this.modal.style.display = "block";
 	}
 
 	paddleControlKeyPress(paddle, passedControl) {

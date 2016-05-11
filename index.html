@@ -7,6 +7,10 @@
 	<style>
 		body {
 			background: #00caa0;
+			position: relative;
+			padding: 0;
+			margin: 0;
+			font-family: sans-serif;
 		}
 
 		#pongCanvas {
@@ -15,6 +19,36 @@
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
+		}
+
+		#modal {
+			display: none;
+			position: absolute;
+			width: 100vw;
+			height: 100vh;
+			top: 0;
+			left: 0;
+			background: rgba(255,255,255, 0.8);
+		}
+
+		#modal .message {
+			position: relative;
+			overflow: auto;
+			text-align: center;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		#modal .main-info {
+			text-transform: uppercase;
+			font-weight: bold;
+			font-size: 60px;
+			line-height: 1.5;
+		}
+
+		#modal .sub-info {
+			font-size: 20px;
 		}
 	</style>
 
@@ -25,5 +59,16 @@
 
 	<button id="start">Start</button>
 	<button id="stop">Stop</button>
+
+	<div id="modal">
+		<div class="message">
+			<div class="main-info">
+				Paused
+			</div>
+			<div class="sub-info">
+				Press space bar to resume.
+			</div>
+		</div>
+	</div>
 </body>
 </html>
