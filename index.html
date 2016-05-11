@@ -21,6 +21,22 @@
 			transform: translate(-50%, -50%);
 		}
 
+		.score {
+			position: absolute;
+			top: 50vh;
+			transform: translateY(-50%);
+			font-size: 90px;
+			font-weight: bold;
+		}
+
+		#left-score {
+			left: 20px;
+		}
+
+		#right-score {
+			right: 20px;
+		}
+
 		#modal {
 			display: none;
 			position: absolute;
@@ -56,6 +72,9 @@
 </head>
 <body>
 	<canvas id="pongCanvas" width="1000" height="600" border="1px solid #333"></canvas>
+
+	<div id="left-score" class="score">0</div>
+	<div id="right-score" class="score">0</div>
 
 	<div id="modal">
 		<div class="message">
