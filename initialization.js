@@ -121,11 +121,13 @@ class GameController {
 		}, 5);
 	}
 
-	stop() {
+	stop( isScore = false ) {
 		clearInterval(this.intervalController);
 		this.intervalController = false;
 
-		this.modal.style.display = "block";
+		if( !isScore ) {
+			this.modal.style.display = "block";
+		}
 	}
 
 	paddleControlKeyPress(paddle, passedControl) {
@@ -212,13 +214,13 @@ class GameController {
 	handleScoreDetection() {
 		//left wall
 		if( this.ball.left <= 0 ) {
-			this.stop();
+			this.stop(true);
 			this.rightScore.increase();
 			this.regenerateBoard();
 		}
 
 		if( this.ball.left + this.ball.width >= this.cxt.width ) {
-			this.stop();
+			this.stop(true);
 			this.leftScore.increase();
 			this.regenerateBoard();
 		}
