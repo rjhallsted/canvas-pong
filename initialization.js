@@ -64,6 +64,15 @@ class GameController {
 				//'z' key
 				object.paddleControlKeyPress('left', e.keyCode);
 			}
+
+			//others
+			if( e.keyCode == '32' ) {
+				if( object.intervalController ) {
+					object.stop();
+				} else {
+					object.start();
+				}
+			}
 		};
 		document.onkeyup = function(e) {
 			//right paddle
@@ -106,6 +115,7 @@ class GameController {
 
 	stop() {
 		clearInterval(this.intervalController);
+		this.intervalController = false;
 	}
 
 	paddleControlKeyPress(paddle, passedControl) {
