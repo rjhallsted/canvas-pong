@@ -8,25 +8,36 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	cxt.height = canvas.height;
 
 	var modal = document.querySelector('#modal');
+	var leftScore = document.querySelector('#leftScore');
+	var rightScore = document.querySelector('#rightScore');
 
-	var controller = new GameController( cxt, modal );
+	var controller = new GameController( cxt, modal, leftScore, rightScore );
 });
 
 class GameController {
 
-	constructor( cxt, modal ) {
+	constructor( cxt, modal, leftScore, rightScore ) {
 		this.modal = modal;
+		this.cxt = cxt;
+		this.leftScore = new Score(leftScore);
+		this.rightScore = new Score(rightScore);
 
-		this.ball = new Ball( cxt, Math.random() * 1.5, Math.random() * 1 );
-		this.leftPaddle = new Paddle( cxt, 'left' );
-		this.rightPaddle = new Paddle( cxt, 'right' );
+		this.regenerateBoard();
+
+		this.initializeControls();
+		this.frameCount = 0;
+	}
+
+	regenerateBoard() {
+		this.cxt.clearRect(0, 0, this.cxt.width, this.cxt.height);
+
+		this.ball = new Ball( this.cxt, Math.random() * 1.5, Math.random() * 1 );
+		this.leftPaddle = new Paddle( this.cxt, 'left' );
+		this.rightPaddle = new Paddle( this.cxt, 'right' );
 
 		this.ball.draw();
 		this.leftPaddle.draw();
 		this.rightPaddle.draw();
-
-		this.initializeControls();
-		this.frameCount = 0;
 	}
 
 	initializeControls() {
@@ -98,6 +109,7 @@ class GameController {
 
 		this.ball.handleWallDetection();
 		this.handlePaddleCollision();
+		this.handleScoreDetection();
 	}
 
 	start() {
@@ -124,7 +136,6 @@ class GameController {
 				this.leftPaddle.controlStack.splice( this.leftPaddle.controlStack.indexOf( passedControl ), 1);
 				this.leftPaddle.controlStack.push(passedControl);
 			}
-			console.log(this.leftPaddle.controlStack);
 			this.setPaddleSpeed('left');
 		}
 		if( paddle == 'right' ) {
@@ -134,7 +145,6 @@ class GameController {
 				this.rightPaddle.controlStack.splice( this.rightPaddle.controlStack.indexOf( passedControl ), 1);
 				this.rightPaddle.controlStack.push(passedControl);
 			}
-			console.log(this.rightPaddle.controlStack);
 			this.setPaddleSpeed('right');
 		}
 	}
@@ -144,7 +154,6 @@ class GameController {
 			this.leftPaddle.controlStack.reverse();
 			this.leftPaddle.controlStack.splice( this.leftPaddle.controlStack.indexOf( passedControl ), 1);
 			this.leftPaddle.controlStack.reverse();
-			console.log(this.leftPaddle.controlStack);
 
 			if( this.leftPaddle.controlStack.length == 0 )
 				this.leftPaddle.ySpeed = 0;
@@ -155,7 +164,6 @@ class GameController {
 			this.rightPaddle.controlStack.reverse();
 			this.rightPaddle.controlStack.splice( this.rightPaddle.controlStack.indexOf( passedControl ), 1);
 			this.rightPaddle.controlStack.reverse();
-			console.log(this.rightPaddle.controlStack);
 
 			if( this.rightPaddle.controlStack.length == 0 )
 				this.rightPaddle.ySpeed = 0;
@@ -167,12 +175,10 @@ class GameController {
 	setPaddleSpeed(paddle) {
 		if( paddle == 'left' ) {
 			var speed = this.speedReference[ this.leftPaddle.controlStack[ this.leftPaddle.controlStack.length - 1 ] ];
-			console.log(speed);
 			this.leftPaddle.ySpeed = speed;
 		}
 		if( paddle == 'right' ) {
 			var speed = this.speedReference[ this.rightPaddle.controlStack[ this.rightPaddle.controlStack.length - 1 ] ];
-			console.log(speed);
 			this.rightPaddle.ySpeed = speed;
 		}
 	}
@@ -201,6 +207,33 @@ class GameController {
 			var speedIncrease = (Math.abs(this.ball.xSpeed) >= 2.5) ? 0 : this.ball.paddleBounces / 10 * directionMultiplier;
 			this.ball.xSpeed = -this.ball.xSpeed + speedIncrease;
 		}
+	}
+
+	handleScoreDetection() {
+		//left wall
+		if( this.ball.left <= 0 ) {
+			this.stop();
+			this.rightScore.increase();
+			this.regenerateBoard();
+		}
+
+		if( this.ball.left + this.ball.width >= this.cxt.width ) {
+			this.stop();
+			this.leftScore.increase();
+			this.regenerateBoard();
+		}
+	}
+}
+
+class Score {
+	constructor( passedDomObject ) {
+		this.htmlObject = passedDomObject;
+		this.current = parseInt(this.htmlObject.innerHTML);
+	}
+
+	increase() {
+		this.current++;
+		this.htmlObject.innerHTML = this.current;
 	}
 }
 
