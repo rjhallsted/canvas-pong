@@ -10,16 +10,6 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	var modal = document.querySelector('#modal');
 
 	var controller = new GameController( cxt, modal );
-
-	var startButton = document.querySelector('#start');
-	startButton.addEventListener('click', function() {
-		controller.start();
-	});
-
-	var stopButton = document.querySelector('#stop');
-	stopButton.addEventListener('click', function() {
-		controller.stop();
-	});
 });
 
 class GameController {
