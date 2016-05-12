@@ -31,13 +31,24 @@ class GameController {
 	regenerateBoard() {
 		this.cxt.clearRect(0, 0, this.cxt.width, this.cxt.height);
 
-		this.ball = new Ball( this.cxt, Math.random() * 1.5, Math.random() * 1 );
+		var startingXSpeed = this.getRandomSpeed(0.5) * 1.5;
+		var startingYSpeed = this.getRandomSpeed(0.25);
+
+		this.ball = new Ball( this.cxt, startingXSpeed, startingYSpeed );
 		this.leftPaddle = new Paddle( this.cxt, 'left' );
 		this.rightPaddle = new Paddle( this.cxt, 'right' );
 
 		this.ball.draw();
 		this.leftPaddle.draw();
 		this.rightPaddle.draw();
+	}
+
+	getRandomSpeed( lowerBound ) {
+		var startingSpeed = Math.random();
+		var direction = Math.round(Math.random());
+		direction = (direction == 1) ? 1 : -1;
+		startingSpeed = (startingSpeed < lowerBound) ? lowerBound : startingSpeed;
+		return startingSpeed * direction;
 	}
 
 	initializeControls() {
