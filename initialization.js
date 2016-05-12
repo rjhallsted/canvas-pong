@@ -197,29 +197,78 @@ class GameController {
 	}
 
 	handlePaddleCollision() {
+		var ballLeft = this.ball.left;
+		var ballTop = this.ball.top;
+		var ballRight = this.ball.left + this.ball.width;
+		var ballBottom = this.ball.top + this.ball.height;
+
+		if( this.isBallPaddleCollision( ballLeft, ballTop, 'left' ) ||
+			this.isBallPaddleCollision( ballLeft, ballBottom, 'left' ) ) {
+			this.reverseBallXDirection('left');
+		}
+		if( this.isBallPaddleCollision( ballRight, ballTop, 'right' ) ||
+			this.isBallPaddleCollision( ballRight, ballBottom, 'right' ) ) {
+				this.reverseBallXDirection( 'right' );
+		}
+	}
+
+	isBallPaddleCollision( ballX, ballY, whichPaddle ) {
+		var ballCoords = new Coords( ballX, ballY );
+		var paddleCoords = this.getPaddleCoords( whichPaddle );
+
+		var ballXCollision;
+		if( whichPaddle == 'left' )
+			ballXCollision = ( ballCoords.x <= paddleCoords.x && ballCoords.x >= this.leftPaddle.left);
+		else
+			ballXCollision = ( ballCoords.x >= paddleCoords.x && ballCoords.x <= this.rightPaddle.left + this.rightPaddle.width);
+
+		console.log( whichPaddle + ': ' + ballXCollision );
+		console.log( ballCoords );
+		console.log( paddleCoords );
+
+		if( (ballCoords.y > paddleCoords.top && ballCoords.y < paddleCoords.bottom) 
+			&& ( ballXCollision ) ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	getPaddleCoords( whichPaddle ) {
+		var paddleCoords = {};
+		if( whichPaddle == 'left' ) {
+			paddleCoords = {
+				top: this.leftPaddle.top,
+				bottom: this.leftPaddle.top + this.leftPaddle.height,
+				x: this.leftPaddle.left + this.leftPaddle.width
+			};
+		} else {
+			paddleCoords = {
+				top: this.rightPaddle.top,
+				bottom: this.rightPaddle.top + this.rightPaddle.height,
+				x: this.rightPaddle.left
+			};
+		}
+		return paddleCoords;
+	}
+
+	getBounceSpeedIncrease() {
 		var directionMultiplier = (this.ball.xSpeed < 0) ? 1 : -1;
+		var speedIncrease = (Math.abs(this.ball.xSpeed) >= 2.5) ? 0 : this.ball.paddleBounces / 10 * directionMultiplier;
 
-		//left paddle
-		if( this.ball.left <= this.leftPaddle.left + this.leftPaddle.width &&
-			this.ball.left > this.leftPaddle.left &&
-			this.ball.top >= this.leftPaddle.top &&
-			this.ball.top + this.ball.height <= this.leftPaddle.top + this.leftPaddle.height ) {
+		return speedIncrease;
+	}
 
-			this.ball.paddleBounces++;
-			var speedIncrease = (Math.abs(this.ball.xSpeed) >= 2) ? 0 : this.ball.paddleBounces / 10 * directionMultiplier;
-			this.ball.xSpeed = -this.ball.xSpeed + speedIncrease;
+	reverseBallXDirection( whichPaddle ) {
+		if( whichPaddle == 'left' ) 
+			this.ball.left = this.leftPaddle.left + this.leftPaddle.width;
+		else {
+			this.ball.left = this.rightPaddle.left - this.ball.width;
 		}
 
-		//right paddle
-		if( this.ball.left + this.ball.width >= this.rightPaddle.left &&
-			this.ball.left + this.ball.width < this.rightPaddle.left + this.rightPaddle.width &&
-			this.ball.top >= this.rightPaddle.top &&
-			this.ball.top + this.ball.height <= this.rightPaddle.top + this.rightPaddle.height ) {
-			
-			this.ball.paddleBounces++;
-			var speedIncrease = (Math.abs(this.ball.xSpeed) >= 2.5) ? 0 : this.ball.paddleBounces / 10 * directionMultiplier;
-			this.ball.xSpeed = -this.ball.xSpeed + speedIncrease;
-		}
+		this.ball.paddleBounces++;
+		this.ball.xSpeed = -this.ball.xSpeed + this.getBounceSpeedIncrease();
+		console.log(this.ball.xSpeed);
 	}
 
 	handleScoreDetection() {
@@ -235,6 +284,13 @@ class GameController {
 			this.leftScore.increase();
 			this.regenerateBoard();
 		}
+	}
+}
+
+class Coords {
+	constructor( x, y ) {
+		this.x = x;
+		this.y = y;
 	}
 }
 
