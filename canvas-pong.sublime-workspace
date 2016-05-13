@@ -4,8 +4,184 @@
 		"selected_items":
 		[
 			[
+				"rever",
+				"reverseBallXDirection"
+			],
+			[
+				"is",
+				"isBallPaddleCollision"
+			],
+			[
+				"ball",
+				"ballXCollision"
+			],
+			[
+				"bal",
+				"ballXCollision"
+			],
+			[
+				"righ",
+				"rightPaddle"
+			],
+			[
+				"right",
+				"rightPaddle"
+			],
+			[
+				"paddle",
+				"paddleBottomCoords"
+			],
+			[
+				"paddleb",
+				"paddleBottomCoords"
+			],
+			[
+				"x",
+				"xSpeed"
+			],
+			[
+				"lef",
+				"leftPaddle"
+			],
+			[
 				"left",
 				"leftPaddle"
+			],
+			[
+				"start",
+				"startingXSpeed"
+			],
+			[
+				"star",
+				"startingYSpeed"
+			],
+			[
+				"startin",
+				"startingYSpeed"
+			],
+			[
+				"pas",
+				"passedDomObject"
+			],
+			[
+				"re",
+				"regenerateBoard"
+			],
+			[
+				"handle",
+				"handleScoreDetection"
+			],
+			[
+				"ri",
+				"rightScore"
+			],
+			[
+				"int",
+				"intervalController"
+			],
+			[
+				"new",
+				"newTop"
+			],
+			[
+				"speed",
+				"speedReference"
+			],
+			[
+				"control",
+				"controlStack"
+			],
+			[
+				"k",
+				"paddleControlKeyPress"
+			],
+			[
+				"pa",
+				"paddleControlKeyRelease"
+			],
+			[
+				"padd",
+				"paddleControlKeyPress"
+			],
+			[
+				"cont",
+				"controlFlag"
+			],
+			[
+				"con",
+				"controlFlag"
+			],
+			[
+				"key",
+				"keyCode"
+			],
+			[
+				"ke",
+				"keyCode"
+			],
+			[
+				"ini",
+				"initializeControls"
+			],
+			[
+				"up",
+				"upArrowRelease"
+			],
+			[
+				"upArr",
+				"upArrowPress"
+			],
+			[
+				"downArr",
+				"downArrowUp"
+			],
+			[
+				"down",
+				"downArrow"
+			],
+			[
+				"han",
+				"handleKeyPress"
+			],
+			[
+				"d",
+				"document"
+			],
+			[
+				"in",
+				"intervalController"
+			],
+			[
+				"move",
+				"moveAtSpeed"
+			],
+			[
+				"inti",
+				"initialXSpeed"
+			],
+			[
+				"an",
+				"animate"
+			],
+			[
+				"inter",
+				"intervalManager"
+			],
+			[
+				"interva",
+				"intervalCount"
+			],
+			[
+				"ex",
+				"executeAnimation"
+			],
+			[
+				"test",
+				"testAnimate"
+			],
+			[
+				"time",
+				"timeInterval"
 			],
 			[
 				"cal",
@@ -14,14 +190,6 @@
 			[
 				"get",
 				"getStartingTopPosition"
-			],
-			[
-				"right",
-				"rightPaddle"
-			],
-			[
-				"lef",
-				"leftPaddle"
 			],
 			[
 				"getPa",
@@ -90,10 +258,6 @@
 			[
 				"hours",
 				"hours_string"
-			],
-			[
-				"time",
-				"time_in_hours"
 			],
 			[
 				"to",
@@ -198,10 +362,6 @@
 			[
 				"str_re",
 				"str_replace"
-			],
-			[
-				"new",
-				"new_text"
 			],
 			[
 				"wee",
@@ -354,184 +514,24 @@
 			[
 				"is_us",
 				"is_user_logged_in"
-			],
-			[
-				"email",
-				"email_value"
-			],
-			[
-				"user_ma",
-				"user_email"
-			],
-			[
-				"func",
-				"function_exists"
-			],
-			[
-				"Fligh",
-				"Flight_Table"
-			],
-			[
-				"in",
-				"in_email"
-			],
-			[
-				"clas",
-				"classes_styles"
-			],
-			[
-				"arr_key",
-				"array_key_exists"
-			],
-			[
-				"PFS_EMA",
-				"PFS_Email_Class"
-			],
-			[
-				"searc",
-				"searchData"
-			],
-			[
-				"mail",
-				"mail_results"
-			],
-			[
-				"resu",
-				"resultsString"
-			],
-			[
-				"res",
-				"resultData"
-			],
-			[
-				"emai",
-				"emailsOjbect"
-			],
-			[
-				"ema",
-				"emailsJSON"
-			],
-			[
-				"pfs-",
-				"pfs-email-schedules-results"
-			],
-			[
-				"error",
-				"errorMessage"
-			],
-			[
-				"slide",
-				"slideDown"
-			],
-			[
-				"pfs-email",
-				"pfs-email-schedules-submit"
-			],
-			[
-				"pfs-ema",
-				"pfs-email-schedules-results"
-			],
-			[
-				"retur",
-				"returnString"
-			],
-			[
-				"retu",
-				"returnString"
-			],
-			[
-				"val",
-				"validateEmail"
-			],
-			[
-				"pfs-e",
-				"pfs-email-schedules-submit"
-			],
-			[
-				"pf",
-				"pfs-email-schedules"
-			],
-			[
-				"hide",
-				"hideEmailSchedulesInput"
-			],
-			[
-				"pfs-em",
-				"pfs-email-schedules"
-			],
-			[
-				"j",
-				"jQuery"
-			],
-			[
-				"wp_",
-				"wp_enqueue_script"
-			],
-			[
-				"wp_ret",
-				"wp_register_script"
-			],
-			[
-				"strto",
-				"strtolower"
-			],
-			[
-				"as",
-				"as_string"
-			],
-			[
-				"pre",
-				"premium_SKUs"
-			],
-			[
-				"wlmapi",
-				"wlmapi_is_user_a_member"
-			],
-			[
-				"is",
-				"is_premium"
-			],
-			[
-				"flig",
-				"flight_days"
-			],
-			[
-				"passride_",
-				"passride_wrdp9"
-			],
-			[
-				"value",
-				"value_weekday"
-			],
-			[
-				"day",
-				"day_string"
-			],
-			[
-				"this",
-				"thisNumber"
-			],
-			[
-				"nth",
-				"nth-of-type"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "index.html",
+			"file": "initialization.js",
 			"settings":
 			{
-				"buffer_size": 426,
+				"buffer_size": 10425,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "initialization.js",
+			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 2070,
+				"buffer_size": 1442,
 				"line_ending": "Unix"
 			}
 		}
@@ -609,6 +609,9 @@
 	],
 	"file_history":
 	[
+		"/Users/RJHallsted/Downloads/Ftp nutriuc1@nutritionresolution.com.xml",
+		"/Users/RJHallsted/Documents/webserver/canvas-pong/.git/MERGE_MSG",
+		"/Users/RJHallsted/Documents/webserver/canvas-pong/index.html",
 		"/Users/RJHallsted/Documents/webserver/canvas-pong/README.md",
 		"/Users/RJHallsted/Documents/webserver/arbor-creative/wp-content/themes/arbor-creative/custom-admin.css",
 		"/Users/RJHallsted/Documents/webserver/arbor-creative/wp-content/themes/arbor-creative/front-page.php",
@@ -733,14 +736,11 @@
 		"/Users/RJHallsted/Documents/Projects/Webserver/passride/wp-content/plugins/passrider-flight-schedule/passrider-flight-schedule.js",
 		"/Users/RJHallsted/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/Users/RJHallsted/Documents/Projects/Webserver/passride/wp-content/plugins/passrider-flight-schedule/passrider-flight-schedule.css",
-		"/Users/RJHallsted/Documents/Projects/Webserver/passride/wp-config.php",
-		"/Users/RJHallsted/Documents/Projects/Webserver/passride/wp-content/themes/thesis_184/custom/class-flight-schedule.php",
-		"/Users/RJHallsted/Documents/Projects/Webserver/passride/wp-content/themes/thesis_184/custom/sample.php",
-		"/Users/RJHallsted/Documents/Projects/Webserver/passride/wp-content/themes/thesis_184/custom/results_back.php"
+		"/Users/RJHallsted/Documents/Projects/Webserver/passride/wp-config.php"
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -779,6 +779,46 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"leftPaddle",
+			"isBal",
+			"leftPaddle",
+			"getSpeedIncrease",
+			"startingXSpeed",
+			"xDirection",
+			"0.5",
+			"xDirection",
+			"startingXSpeed",
+			"stop",
+			"value",
+			"cons",
+			"cxt",
+			"20px",
+			"this",
+			"ball",
+			"end",
+			"endButton",
+			"end",
+			"ball",
+			"Paddle",
+			"leftPaddle",
+			"handleCollsionDetection",
+			"1,",
+			"Collsion",
+			"handleCollsionDetection",
+			"leftPaddle",
+			" 0,",
+			"setPaddleSpeed",
+			"leftPaddle",
+			"'down'",
+			"'up'",
+			"left",
+			"leftPaddle",
+			"this",
+			"start",
+			"this",
+			"runAnimationTimer",
+			"object",
+			"pongBall",
 			"10",
 			"quote",
 			".quote",
@@ -866,47 +906,7 @@
 			"curl_string",
 			"result",
 			"overwrite",
-			"search",
-			"airline_op",
-			"pfs_search_id",
-			"[^/]",
-			"(\\w+)",
-			"index.php?pagename=$matches[1]&from=$matches[2]&to=$matches[3]&mode=$matches[4]",
-			"^([^/]+)/from/([^/]+)/to/([^/]+)/mode/([^/]+)?$	",
-			"rewrite_rule",
-			"^([^/]+)/from/([^/]+)/to/([^/]+)/mode/([^/]+)?$	",
-			"set_che",
-			"stops",
-			"}\n",
-			"h6",
-			"strong",
-			"nonstops",
-			"get_airport",
-			"this",
-			"url",
-			"airport",
-			"error_mes",
-			"'flight-search'",
-			"load_pfs_results",
-			"airline",
-			"from",
-			"airport",
-			"pfs_airport_form",
-			"lu",
-			"lufthans",
-			"car",
-			"curl",
-			"retval",
-			"db",
-			"handlers",
-			"db",
-			"form",
-			"spec",
-			"specif",
-			"site_url",
-			"2",
-			"localize",
-			"scroll"
+			"search"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -924,24 +924,57 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "index.html",
+					"file": "initialization.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 426,
+						"buffer_size": 10425,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								299,
-								299
+								7380,
+								7380
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2704.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1442,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								509,
+								509
 							]
 						],
 						"settings":
@@ -957,39 +990,6 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "initialization.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2070,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								908,
-								908
-							]
-						],
-						"settings":
-						{
-							"auto_name": "",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
 					"type": "text"
 				}
 			]
