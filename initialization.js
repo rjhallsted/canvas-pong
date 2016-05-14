@@ -254,7 +254,8 @@ class GameController {
 
 	getBounceSpeedIncrease() {
 		var directionMultiplier = (this.ball.xSpeed < 0) ? 1 : -1;
-		var speedIncrease = (Math.abs(this.ball.xSpeed) >= 4) ? 0 : this.ball.paddleBounces / 10 * directionMultiplier;
+		// var speedIncrease = (Math.abs(this.ball.xSpeed) >= 4) ? 0 : this.ball.paddleBounces / 10 * directionMultiplier;
+		var speedIncrease = this.ball.paddleBounces / 10 * directionMultiplier;
 
 		return speedIncrease;
 	}
