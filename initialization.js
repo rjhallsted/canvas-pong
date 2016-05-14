@@ -408,4 +408,21 @@ class Ball extends MovableObject {
 			this.reverseYSpeed();
 		}
 	}
+
+	move(left, top) {
+		var object = this;
+		var currentRect = {
+			left: this.left - 0.5,
+			top: this.top - 0.5,
+			width: this.width + 1,
+			height: this.height + 1
+		};
+		var timer = setTimeout(function() {
+			object.cxt.clearRect( currentRect.left, currentRect.top, currentRect.width, currentRect.height ); 
+		}, 75);
+
+		this.left = left;
+		this.top = top;
+		this.draw();
+	}
 }
