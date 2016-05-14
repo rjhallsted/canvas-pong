@@ -53,10 +53,10 @@ class GameController {
 
 	initializeControls() {
 		this.speedReference = {
-			'38' : -1.75,
-			'40' : 1.75,
-			'65' : -1.75,
-			'90' : 1.75
+			'38' : -2.5,
+			'40' : 2.5,
+			'65' : -2.5,
+			'90' : 2.5
 		};
 
 		var object = this;
