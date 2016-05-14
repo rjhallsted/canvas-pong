@@ -1,24 +1,33 @@
 document.addEventListener( 'DOMContentLoaded', function() {
 	var fillColor = '#333333';
 
-	var canvas = document.querySelector('#pongCanvas');
-	var cxt = canvas.getContext('2d');
+	//pong canvas
+	var pongCanvas = document.querySelector('#pongCanvas');
+	var cxt = pongCanvas.getContext('2d');
 	cxt.fillStyle = fillColor;
-	cxt.width = canvas.width;
-	cxt.height = canvas.height;
+	cxt.width = pongCanvas.width;
+	cxt.height = pongCanvas.height;
+
+	//paddleCanvas
+	var paddleCanvas = document.querySelector('#paddleCanvas');
+	var paddleCxt = paddleCanvas.getContext('2d');
+	paddleCxt.fillStyle = fillColor;
+	paddleCxt.width = paddleCanvas.width;
+	paddleCxt.height = paddleCanvas.height;
 
 	var modal = document.querySelector('#modal');
 	var leftScore = document.querySelector('#leftScore');
 	var rightScore = document.querySelector('#rightScore');
 
-	var controller = new GameController( cxt, modal, leftScore, rightScore );
+	var controller = new GameController( cxt, paddleCxt, modal, leftScore, rightScore );
 });
 
 class GameController {
 
-	constructor( cxt, modal, leftScore, rightScore ) {
+	constructor( ballCxt, paddleCxt, modal, leftScore, rightScore ) {
 		this.modal = modal;
-		this.cxt = cxt;
+		this.ballCxt = ballCxt;
+		this.paddleCxt = paddleCxt;
 		this.leftScore = new Score(leftScore);
 		this.rightScore = new Score(rightScore);
 
@@ -29,14 +38,15 @@ class GameController {
 	}
 
 	regenerateBoard() {
-		this.cxt.clearRect(0, 0, this.cxt.width, this.cxt.height);
+		this.ballCxt.clearRect(0, 0, this.ballCxt.width, this.ballCxt.height);
+		this.paddleCxt.clearRect(0, 0, this.paddleCxt.width, this.paddleCxt.height);
 
 		var startingXSpeed = this.getRandomSpeed(0.5) * 1.5;
 		var startingYSpeed = this.getRandomSpeed(0.25);
 
-		this.ball = new Ball( this.cxt, startingXSpeed, startingYSpeed );
-		this.leftPaddle = new Paddle( this.cxt, 'left' );
-		this.rightPaddle = new Paddle( this.cxt, 'right' );
+		this.ball = new Ball( this.ballCxt, startingXSpeed, startingYSpeed );
+		this.leftPaddle = new Paddle( this.paddleCxt, 'left' );
+		this.rightPaddle = new Paddle( this.paddleCxt, 'right' );
 
 		this.ball.draw();
 		this.leftPaddle.draw();

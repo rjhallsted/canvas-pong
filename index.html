@@ -13,12 +13,16 @@
 			font-family: sans-serif;
 		}
 
-		#pongCanvas {
-			background: white;
+		#pongCanvas,
+		#paddleCanvas {
 			position: fixed;
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
+		}
+
+		#pongCanvas {
+			background: white;
 		}
 
 		.score {
@@ -72,6 +76,7 @@
 </head>
 <body>
 	<canvas id="pongCanvas" width="1000" height="600" border="1px solid #333"></canvas>
+	<canvas id="paddleCanvas" width="1000" height="600" border="1px solid #333"></canvas>
 
 	<div id="leftScore" class="score">0</div>
 	<div id="rightScore" class="score">0</div>
