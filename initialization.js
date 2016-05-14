@@ -290,7 +290,7 @@ class GameController {
 			this.regenerateBoard();
 		}
 
-		if( this.ball.left + this.ball.width >= this.cxt.width ) {
+		if( this.ball.left + this.ball.width >= this.ballCxt.width ) {
 			this.stop(true);
 			this.leftScore.increase();
 			this.regenerateBoard();
@@ -337,6 +337,7 @@ class MovableObject {
 	}
 
 	draw() {
+		this.cxt.fillStyle = '#333333';
 		this.cxt.fillRect( this.left, this.top, this.width, this.height );
 	}
 
@@ -422,15 +423,16 @@ class Ball extends MovableObject {
 
 	move(left, top) {
 		var object = this;
-		var currentRect = {
-			left: this.left - 0.5,
-			top: this.top - 0.5,
-			width: this.width + 1,
-			height: this.height + 1
+		var currentCoords = {
+			left: object.left - 0.4,
+			top: object.top - 0.4,
+			width: object.width + 0.8,
+			height: object.height + 0.8
 		};
 		var timer = setTimeout(function() {
-			object.cxt.clearRect( currentRect.left, currentRect.top, currentRect.width, currentRect.height ); 
-		}, 75);
+			object.cxt.fillStyle = '#aaaaaa'; 
+			object.cxt.fillRect( currentCoords.left, currentCoords.top, currentCoords.width, currentCoords.height );
+		}, 100);
 
 		this.left = left;
 		this.top = top;
