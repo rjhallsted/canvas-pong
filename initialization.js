@@ -38,6 +38,9 @@ class GameController {
 	}
 
 	regenerateBoard() {
+		if( this.ball )
+			this.ball.okayToTrace = false;
+
 		this.ballCxt.clearRect(0, 0, this.ballCxt.width, this.ballCxt.height);
 		this.paddleCxt.clearRect(0, 0, this.paddleCxt.width, this.paddleCxt.height);
 
@@ -365,7 +368,7 @@ class Paddle extends MovableObject {
 		var width = 6;
 		var height = 80;
 
-		super( cxt, width, height, 0, 0, 0, 0);
+		super( cxt, width, height, 0, 0, 0, 0 );
 
 		this.side = side;
 		var left = this.calculateInitialLeftPosition( cxt, side, width );
@@ -410,6 +413,7 @@ class Ball extends MovableObject {
 		super( cxt, size, size, left, top, initialXSpeed, initialYSpeed);
 		this.size = size;
 		this.paddleBounces = 0;
+		this.okayToTrace = true;
 	}
 
 	handleWallDetection() {
@@ -430,8 +434,10 @@ class Ball extends MovableObject {
 			height: object.height + 0.8
 		};
 		var timer = setTimeout(function() {
-			object.cxt.fillStyle = '#aaaaaa'; 
-			object.cxt.fillRect( currentCoords.left, currentCoords.top, currentCoords.width, currentCoords.height );
+			if( object.okayToTrace ) {
+				object.cxt.fillStyle = '#aaaaaa'; 
+				object.cxt.fillRect( currentCoords.left, currentCoords.top, currentCoords.width, currentCoords.height );
+			}
 		}, 100);
 
 		this.left = left;
