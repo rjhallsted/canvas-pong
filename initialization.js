@@ -46,7 +46,6 @@ class GameController {
 
 		var startingXSpeed = this.getRandomSpeed(0.5) * 1.5;
 		var startingYSpeed = this.getRandomSpeed(0.25);
-
 		this.ball = new Ball( this.ballCxt, startingXSpeed, startingYSpeed );
 		this.leftPaddle = new Paddle( this.paddleCxt, 'left' );
 		this.rightPaddle = new Paddle( this.paddleCxt, 'right' );
@@ -235,10 +234,6 @@ class GameController {
 		else
 			ballXCollision = ( ballCoords.x >= paddleCoords.x && ballCoords.x <= this.rightPaddle.left + this.rightPaddle.width);
 
-		console.log( whichPaddle + ': ' + ballXCollision );
-		console.log( ballCoords );
-		console.log( paddleCoords );
-
 		if( (ballCoords.y > paddleCoords.top && ballCoords.y < paddleCoords.bottom) 
 			&& ( ballXCollision ) ) {
 			return true;
@@ -268,7 +263,7 @@ class GameController {
 	getBounceSpeedIncrease() {
 		var directionMultiplier = (this.ball.xSpeed < 0) ? 1 : -1;
 		// var speedIncrease = (Math.abs(this.ball.xSpeed) >= 4) ? 0 : this.ball.paddleBounces / 10 * directionMultiplier;
-		var speedIncrease = this.ball.paddleBounces / 10 * directionMultiplier;
+		var speedIncrease = (Math.abs(this.ball.xSpeed) >= 9)  ? 0 : 0.25 * directionMultiplier;
 
 		return speedIncrease;
 	}
@@ -282,7 +277,6 @@ class GameController {
 
 		this.ball.paddleBounces++;
 		this.ball.xSpeed = -this.ball.xSpeed + this.getBounceSpeedIncrease();
-		console.log(this.ball.xSpeed);
 	}
 
 	handleScoreDetection() {
