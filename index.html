@@ -41,6 +41,29 @@
 			right: 20px;
 		}
 
+		.controls {
+			position: absolute;
+			top: 70vh;
+			transform: translateY(50%);
+		}
+
+		.left-controls {
+			left: 30px;
+		}
+
+		.right-controls {
+			right: 30px;
+		}
+
+		.directions {
+			position: fixed;
+			bottom: 10px;
+			text-align: center;
+			left: 50%;
+			transform: translateX(-50%);
+			font-size: 20px;
+		}
+
 		#modal {
 			display: none;
 			position: absolute;
@@ -79,8 +102,17 @@
 	<canvas id="paddleCanvas" width="1000" height="600" border="1px solid #333"></canvas>
 
 	<div id="leftScore" class="score">0</div>
+	<div class="controls left-controls">
+		<p><strong>Up:</strong> "A"</p>
+		<p><strong>Down:</strong> "Z"</p>
+	</div>
 	<div id="rightScore" class="score">0</div>
+	<div class="controls right-controls">
+		<p><strong>Up:</strong> &uarr;</p>
+		<p><strong>Down:</strong> &darr;</p>
+	</div>
 
+	<div class="directions">Press space to start and to pause.</div>
 	<div id="modal">
 		<div class="message">
 			<div class="main-info">
