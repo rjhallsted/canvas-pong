@@ -216,11 +216,13 @@ class GameController {
 
 		if( this.isBallPaddleCollision( ballLeft, ballTop, 'left' ) ||
 			this.isBallPaddleCollision( ballLeft, ballBottom, 'left' ) ) {
-			this.reverseBallXDirection('left');
+				this.reverseBallXDirection('left');
+				this.ball.changeTraceColor();
 		}
 		if( this.isBallPaddleCollision( ballRight, ballTop, 'right' ) ||
 			this.isBallPaddleCollision( ballRight, ballBottom, 'right' ) ) {
 				this.reverseBallXDirection( 'right' );
+				this.ball.changeTraceColor();
 		}
 	}
 
@@ -408,6 +410,7 @@ class Ball extends MovableObject {
 		this.size = size;
 		this.paddleBounces = 0;
 		this.okayToTrace = true;
+		this.changeTraceColor();
 	}
 
 	handleWallDetection() {
@@ -429,7 +432,7 @@ class Ball extends MovableObject {
 		};
 		var timer = setTimeout(function() {
 			if( object.okayToTrace ) {
-				object.cxt.fillStyle = '#aaaaaa'; 
+				object.cxt.fillStyle = object.traceColor;
 				object.cxt.fillRect( currentCoords.left, currentCoords.top, currentCoords.width, currentCoords.height );
 			}
 		}, 100);
@@ -437,5 +440,15 @@ class Ball extends MovableObject {
 		this.left = left;
 		this.top = top;
 		this.draw();
+	}
+
+	getRandomTraceColor() {
+		var colors = ['#61C6EC', '#A7FFA4', '#F4D35E', '#EC91D8', '#D6EFFF'];
+		var rand = Math.floor(Math.random() * 5);
+		return colors[rand];
+	}
+
+	changeTraceColor() {
+		this.traceColor = this.getRandomTraceColor();
 	}
 }

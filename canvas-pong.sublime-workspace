@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"star",
+				"startingXSpeed"
+			],
+			[
+				"curre",
+				"currentCoords"
+			],
+			[
+				"fil",
+				"fillStyle"
+			],
+			[
+				"fill",
+				"fillColor"
+			],
+			[
+				"curr",
+				"currentCoords"
+			],
+			[
+				"cu",
+				"currentCoords"
+			],
+			[
 				"rever",
 				"reverseBallXDirection"
 			],
@@ -50,10 +74,6 @@
 			[
 				"start",
 				"startingXSpeed"
-			],
-			[
-				"star",
-				"startingYSpeed"
 			],
 			[
 				"startin",
@@ -214,10 +234,6 @@
 			[
 				"side",
 				"sideMargin"
-			],
-			[
-				"fill",
-				"fillRect"
 			],
 			[
 				"default",
@@ -498,22 +514,6 @@
 			[
 				"pfs_air",
 				"pfs_airport_results"
-			],
-			[
-				"load_pfs",
-				"load_pfs_search_form"
-			],
-			[
-				"jquery",
-				"jquery-ui"
-			],
-			[
-				"pfs_a",
-				"pfs_airport_form"
-			],
-			[
-				"is_us",
-				"is_user_logged_in"
 			]
 		]
 	},
@@ -523,7 +523,15 @@
 			"file": "initialization.js",
 			"settings":
 			{
-				"buffer_size": 10425,
+				"buffer_size": 11399,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 13,
 				"line_ending": "Unix"
 			}
 		},
@@ -531,7 +539,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 1442,
+				"buffer_size": 2186,
 				"line_ending": "Unix"
 			}
 		}
@@ -609,6 +617,7 @@
 	],
 	"file_history":
 	[
+		"/Users/RJHallsted/Documents/webserver/canvas-pong/.gitignore",
 		"/Users/RJHallsted/Downloads/Ftp nutriuc1@nutritionresolution.com.xml",
 		"/Users/RJHallsted/Documents/webserver/canvas-pong/.git/MERGE_MSG",
 		"/Users/RJHallsted/Documents/webserver/canvas-pong/index.html",
@@ -735,8 +744,7 @@
 		"/Users/RJHallsted/Documents/Projects/Webserver/passride/wp-content/plugins/passrider-flight-schedule/airports.js",
 		"/Users/RJHallsted/Documents/Projects/Webserver/passride/wp-content/plugins/passrider-flight-schedule/passrider-flight-schedule.js",
 		"/Users/RJHallsted/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/Users/RJHallsted/Documents/Projects/Webserver/passride/wp-content/plugins/passrider-flight-schedule/passrider-flight-schedule.css",
-		"/Users/RJHallsted/Documents/Projects/Webserver/passride/wp-config.php"
+		"/Users/RJHallsted/Documents/Projects/Webserver/passride/wp-content/plugins/passrider-flight-schedule/passrider-flight-schedule.css"
 	],
 	"find":
 	{
@@ -779,6 +787,24 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"reverse",
+			"random",
+			"ball",
+			"LOG",
+			"fillColor",
+			"currentRect",
+			"cxt",
+			"ballCxt",
+			"pongCanvas",
+			"cxt",
+			"canvas",
+			"Canvas",
+			"canvas",
+			"1.75",
+			"paddleSpee",
+			"currentCoords",
+			"this",
+			"moveAtSpeed",
 			"leftPaddle",
 			"isBal",
 			"leftPaddle",
@@ -888,25 +914,7 @@
 			"curl",
 			"tos",
 			"end",
-			"froms",
-			"directs",
-			"build_item",
-			"is_clean",
-			"url",
-			"nav_links",
-			"nonstops",
-			"get_page_url_by_title",
-			"on(",
-			"on",
-			"p {",
-			"is_prem",
-			"wllogin2_compact",
-			"wp_redirect",
-			"pfs_airport_from_to",
-			"curl_string",
-			"result",
-			"overwrite",
-			"search"
+			"froms"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -924,7 +932,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -933,15 +941,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10425,
+						"buffer_size": 11399,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7380,
-								7380
+								7953,
+								7953
 							]
 						],
 						"settings":
@@ -954,27 +962,58 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2704.0,
+						"translation.y": 3703.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "index.html",
-					"semi_transient": false,
+					"file": "README.md",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 1442,
+						"buffer_size": 13,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								509,
-								509
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2186,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								419,
+								419
 							]
 						],
 						"settings":
@@ -986,10 +1025,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 286.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
